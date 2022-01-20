@@ -1,0 +1,40 @@
+Two Sum Problem: https://leetcode.com/problems/two-sum
+"Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order."
+
+Solution:
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        // time complexity:O(n) space complexity:O(n)
+        HashMap<Integer,Integer> iteratedArray = new HashMap<Integer,Integer>();
+        int currIdx = 0;
+        iteratedArray.put(nums[0],0);
+        for(int i =1;i<nums.length;i++){
+            if(iteratedArray.containsKey(target-nums[i])){
+                int result[] = new int[2];
+                result[0]=iteratedArray.get(target-nums[i]);
+                result[1]=i;
+                return result;
+            }else{
+                currIdx++;
+                iteratedArray.put(nums[i],i);
+            }
+        }
+        return null;
+        /*
+        // Bruteforce worst case time complexity: O(n^2), space complexity: O(1)
+        int[] result = {0,1};
+        for(int i = 0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++)
+                if((nums[i]+nums[j])==target){
+                    int result[] = new int[2];
+                    result[0]=i;
+                    result[1]=j;
+                    return result;
+                }
+            }
+        return null;
+        */
+    }
+}
